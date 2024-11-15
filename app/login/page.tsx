@@ -4,8 +4,8 @@ import userIcon from "@/public/images/user-icon.svg"
 import passwordIcon from "@/public/images/password-icon.svg"
 const LoginPage = () => {
   return (
-    <div className="container flex justify-center mt-20">
-      <div className="flex flex-col justify-center items-center ">
+    <div className=" flex justify-center h-[100vh]">
+      <div className="flex flex-col md:justify-center items-center ">
         <div className="">
           <Image src={logo} width={150} height={150} alt="logo" />
         </div>

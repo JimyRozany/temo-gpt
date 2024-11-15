@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Tajawal } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/navbar/Navbar";
+import { LayoutProvider } from "@/utlis/LayoutProvider";
 
 const tajawal = Tajawal({
   weight: ["200","400", "500", "700"],
@@ -26,12 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light">
+    <html lang="en" data-theme="light" dir="ltr">
       <body
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         className={`${tajawal.className}`}
       >
+      
+        <LayoutProvider>
         {children}
+
+        </LayoutProvider>
       </body>
     </html>
   );
