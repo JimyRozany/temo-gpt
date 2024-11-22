@@ -1,14 +1,23 @@
 "use client";
-import Image from "next/image";
-import cpuIcon from "@/public/images/cpu-icon.svg";
-import codingIcon from "@/public/images/coding-icon.svg";
-import ideaIcon from "@/public/images/idea-icon.svg";
+// import Image from "next/image";
+// import cpuIcon from "@/public/images/cpu-icon.svg";
+// import codingIcon from "@/public/images/coding-icon.svg";
+// import ideaIcon from "@/public/images/idea-icon.svg";
 import Link from "next/link";
 
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const NavLinks = () => {
   const pathname = usePathname();
+  const [isClient ,setIsClient] = useState(false) ;
+
+
+  useEffect(() => {
+    setIsClient(true)
+  }, []);
+
+  if(!isClient) return null ;
   return (
     <ul className="flex items-center gap-4" dir="rtl">
       <li className="flex items-center gap-2 hover:text-primary cursor-pointer text-secondary duration-300 duration-300 duration-300">

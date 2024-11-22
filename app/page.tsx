@@ -5,7 +5,7 @@ export default function Home() {
 
   const questionsJSX = questions.map((item,index) => (
     <>
-          <AccordionItem item={item} index={index} />
+          <AccordionItem item={item} index={index} key={index} />
            <hr  className="my-4"/>
     </>
   ))
