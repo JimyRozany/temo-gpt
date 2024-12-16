@@ -40,6 +40,21 @@ export async function POST(request: NextRequest) {
     // hash the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(requestData.password, salt);
+    if (requestData.role !== "" || requestData.role === null) {
+      const newUser = await prisma.user.create({
+        data: {
+          username: requestData.username,
+          email: requestData.email,
+          password: hashedPassword,
+          role: requestData.role,
+        },
+      });
+      // return success message
+      return NextResponse.json(
+        { message: "user registered successfully" },
+        { status: 201 }
+      );
+    }
     // create new user in database
     const newUser = await prisma.user.create({
       data: {

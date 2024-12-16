@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="en" data-theme="light" dir="ltr">
       <body
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        className={`${tajawal.className}`}
+        className={`${tajawal.className} !scroll-smooth `}
       >
         <LayoutProvider>{children}</LayoutProvider>
         <Toaster

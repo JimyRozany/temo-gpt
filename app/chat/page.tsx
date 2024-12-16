@@ -2,10 +2,10 @@ import Message from "@/components/message/Message";
 
 const ChatPage = () => {
   return (
-    <div className=" flex justify-center">
-      <div className=" relative  container p-4 w-3/5 flex flex-col items-center h-72 sm:h-96  md:h-[calc(100vh_-_130px)] overflow-y-scroll">
+    <div className=" flex justify-center border border-green-500 p-0">
+      <div className=" relative w-4/5  container border border-red-500 p-0 md:p-4 md:w-3/5 flex flex-col items-center h-[calc(100vh_-_280px)]  md:h-[calc(100vh_-_130px)] overflow-y-scroll">
         {/* user questions & temo answers */}
-        
+
         <Message />
         <Message />
         <Message />
@@ -16,7 +16,7 @@ const ChatPage = () => {
         <Message />
         <Message />
         {/* input */}
-        <div className="  bottom-16 w-1/2 fixed ">
+        <div className=" bottom-36 md:bottom-16 w-11/12 md:w-1/2 fixed ">
           <form action="#">
             <label className="input input-bordered flex items-center gap-2 rounded-full">
               <button className="">
@@ -26,7 +26,7 @@ const ChatPage = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-6"
+                  className="size-4 md:size-6"
                 >
                   <path
                     strokeLinecap="round"
@@ -35,7 +35,8 @@ const ChatPage = () => {
                   />
                 </svg>
               </button>
-              <input type="text" className="grow" placeholder="Search" />
+              {/* <input type="text" className="grow border border-green-200 w-4/5 resize-y overflow-auto " placeholder="Search"  /> */}
+              <textarea name="" id="" className=" w-4/5 md:min-h-10 outline-none border-none resize-y overflow-visible max-h-min bg-transparent"></textarea>
               <button className="">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +44,7 @@ const ChatPage = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-6"
+                  className="size-4 md:size-6"
                 >
                   <path
                     strokeLinecap="round"
@@ -57,7 +58,7 @@ const ChatPage = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="size-10 text-primary"
+                  className="size-7 md:size-10 text-primary"
                 >
                   <path
                     fillRule="evenodd"
@@ -70,7 +71,6 @@ const ChatPage = () => {
           </form>
         </div>
       </div>
-      
     </div>
   );
 };

@@ -13,7 +13,7 @@ const LogoutBtn = () => {
       console.log(error);
     }
   };
-  return <button onClick={handleLogout}>logout</button>;
+  return <button onClick={handleLogout}>Logout</button>;
 };
 
 export default LogoutBtn;

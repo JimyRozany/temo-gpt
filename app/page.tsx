@@ -30,7 +30,7 @@ export default function Home() {
                 d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-            <button dir="rtl" className="text-xl">
+            <button dir="rtl" className="text-md md:text-xl">
               لغة HTML
             </button>
           </div>
@@ -74,7 +74,7 @@ export default function Home() {
           </div>
         </div>
         {/* 7 questions  */}
-        <div className="my-5 w-3/4" dir="rtl">
+        <div  className="my-5 w-3/4" dir="rtl">
           {questionsJSX}
         </div>
       </div>

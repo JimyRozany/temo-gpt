@@ -21,15 +21,17 @@ const LoginPage = () => {
     if (email === "") return toast.error("email is requier");
     if (password === "") return toast.error("password is requier");
     try {
+      setLoading(true);
       await axios.post("http://localhost:3000/api/users/login", {
         email,
         password,
       });
-      setLoading(true);
       router.replace("/");
+      router.refresh()
     } catch (error) {
       console.log(error);
       toast.error(` ${error.response.data.message}`);
+      setLoading(false);
     }
   };
 

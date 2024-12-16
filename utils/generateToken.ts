@@ -4,15 +4,15 @@ import jwt from "jsonwebtoken";
 interface Props {
   id: number;
   email: string;
-  isAdmin: boolean;
+  role: string;
 }
-export function generateToken({ id ,email ,isAdmin }: Props) {
+export function generateToken({ id ,email ,role }: Props) {
   // generate jwt token
   const secretKey = process.env.JWT_SECRET as string;
   const token = jwt.sign(
-    { userId: id, email: email, isAdmin: isAdmin },
+    { userId: id, email: email, role: role },
     secretKey,
-    { expiresIn: "1h" }
+    { expiresIn: "30d" }
   );
   return token;
 }

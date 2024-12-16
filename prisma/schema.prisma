@@ -13,13 +13,40 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  username  String   @db.VarChar(100) // max length is 100 chart
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  username  String    @db.VarChar(100) // max length is 100 chart
   password  String //if you need column is optional write ? after datatype 
-  isAdmin   Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  // isAdmin   Boolean  @default(false)
+  role      Role      @default(READER)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  articles  Article[]
+}
+
+enum Role {
+  ADMIN
+  READER
+  CHATTING
+}
+
+model Article {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  title      String
+  body       String  @db.VarChar(1000)
+  //one-to-many relation between article and user
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  //one-to-many relation between article and category
+  categories Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String
+  articles Article[]
 }

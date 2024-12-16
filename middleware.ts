@@ -1,13 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
+import { jwtVerify } from "jose";
 
-export function middleware(request: NextRequest) {
+const SECRET_KEY = new TextEncoder().encode(process.env.JWT_SECRET);
+
+export async function middleware(request: NextRequest) {
   const token = request.cookies.get("auth-token");
-  if (token) {
-    return NextResponse.next();
+  if (!token) {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
-  return NextResponse.redirect( new URL('/login', request.url));
+  // decode the token
+  const { payload } = await jwtVerify(token.value, SECRET_KEY);
+  // allow only to admin go to the dashboard
+  // console.log(request.nextUrl.pathname);
+  const { pathname } = request.nextUrl;
+  
+  if (payload.role !== "ADMIN" &&  pathname.startsWith('/dashboard')) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/", "/chat", "/quiz"],
+  matcher: ["/", "/chat", "/quiz", "/profile", '/dashboard/:path*'],
+
 };

@@ -10,7 +10,7 @@ import { setCookie } from "@/utils/generateToken";
 interface JwtPayload {
   id: number;
   email: string;
-  isAdmin: boolean;
+  role:string;
 }
 
 /**
@@ -56,10 +56,10 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    const jwtPayload: JwtPayload = {
+    const jwtPayload : JwtPayload= {
       id: user.id,
       email: user.email,
-      isAdmin: user.isAdmin,
+      role: user.role ,
     };
     //generate token and set-cookie
     const cookie = setCookie(jwtPayload);

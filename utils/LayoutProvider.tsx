@@ -4,6 +4,7 @@ import React from "react";
 // Use usePathname for catching route name.
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/navbar/Navbar";
+import NavTwo from "@/components/nav2/NavTwo";
 
 export const LayoutProvider = ({
   children,
@@ -12,13 +13,14 @@ export const LayoutProvider = ({
 }>) => {
   const pathname = usePathname();
 
-  if (pathname === "/login") {
+  if (pathname === "/login" || pathname.startsWith('/dashboard')) {
     return <>{children}</>;
   }
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
+      <NavTwo />
       {children}
     </>
   );
