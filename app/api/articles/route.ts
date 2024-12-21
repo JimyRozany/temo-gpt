@@ -9,7 +9,7 @@ import { NextRequest, NextResponse } from "next/server";
  * @access private  // authenticated user use endpoint
  */
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const articles = await prisma.article.findMany();
 
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     );
   } catch (error) {
     return NextResponse.json(
-      { message: "internal server error" },
+      { message: "internal server error", error },
       { status: 500 }
     );
   }
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       data: {
         title: reqData.title,
         body: reqData.body,
-        userId: parseInt(reqData.userId) ,
+        userId: parseInt(reqData.userId),
         categoryId: parseInt(reqData.categoryId),
       },
     });
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     return NextResponse.json(
-      { message: "internal server error" },
+      { message: "internal server error", error },
       // { message:error },
       { status: 500 }
     );

@@ -1,6 +1,11 @@
 import prisma from "@/utils/db";
 import { NextRequest, NextResponse } from "next/server";
 
+// type props = {
+//   params: {
+//     userId: string;
+//   };
+// };
 /**
  * @method GET
  * @url ~/api/users/:userId
@@ -8,13 +13,13 @@ import { NextRequest, NextResponse } from "next/server";
  * @access private // only admin can use this endpoint
  */
 
-export async function GET(request: NextRequest, props: any) {
+export async function GET(req:NextRequest ,{ params }) {
   try {
-    const userId = props.params.userId;
+    const { id } = params;
 
     // check the email exists in database or not
     const user = await prisma.user.findUnique({
-      where: { id: parseInt(userId) },
+      where: { id: parseInt(id) },
       select: {
         id: true,
         username: true,
@@ -29,7 +34,7 @@ export async function GET(request: NextRequest, props: any) {
     return NextResponse.json({ data: user }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { message: "internal server error " },
+      { message: "internal server error ", error },
       // { message: error },
       { status: 500 }
     );
@@ -43,12 +48,12 @@ export async function GET(request: NextRequest, props: any) {
  * @access private // only admin can use this endpoint
  */
 
-export async function DELETE(request: NextRequest, props: any) {
+export async function DELETE(req: NextRequest, { params }) {
   try {
-    const userId = props.params.userId;
+    const { id } = params;
 
-    const deleteUser = await prisma.user.delete({
-      where: { id: parseInt(userId) },
+    await prisma.user.delete({
+      where: { id: parseInt(id) },
     });
 
     return NextResponse.json(
@@ -57,7 +62,7 @@ export async function DELETE(request: NextRequest, props: any) {
     );
   } catch (error) {
     return NextResponse.json(
-      { message: "internal server error " },
+      { message: "internal server error ", error },
       // { message: error },
       { status: 500 }
     );

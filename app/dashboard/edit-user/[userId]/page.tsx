@@ -3,7 +3,6 @@ import axios from "axios";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
-import { FaKey } from "react-icons/fa6";
 import { CiUser } from "react-icons/ci";
 import { MdEmail } from "react-icons/md";
 

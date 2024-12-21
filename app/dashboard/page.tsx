@@ -1,5 +1,4 @@
 import Link from "next/link";
-import AddUserForm from "@/components/AddUserForm/AddUserForm";
 import axios from "axios";
 import { FaArrowRight } from "react-icons/fa6";
 import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
@@ -8,11 +7,11 @@ const DashboardPage = async () => {
   const response = await axios.get("http://localhost:3000/api/users/all");
   const users = response.data.data;
 
-  const handleDelete = async (e, userId) => {
-console.log(userId);
+//   const handleDelete = async (e, userId) => {
+// console.log(userId);
 
-    // const response = await axios.delete("http://localhost:3000/api/users/");
-  }
+//     // const response = await axios.delete("http://localhost:3000/api/users/");
+//   }
 
 
 

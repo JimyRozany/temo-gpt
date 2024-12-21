@@ -2,11 +2,11 @@ import prisma from "@/utils/db";
 import { updateCategorySchema } from "@/utils/validationSchemas";
 import { NextRequest, NextResponse } from "next/server";
 
-type props = {
-  params: {
-    categoryId: string;
-  };
-};
+// type props = {
+//   params: {
+//     categoryId: string;
+//   };
+// };
 
 /**
  * @method PUT
@@ -15,10 +15,10 @@ type props = {
  * @access private  // authenticated user use endpoint
  */
 
-export async function PUT(request: NextRequest, { params }: props) {
+export async function PUT(request: NextRequest, { params }) {
   try {
     const reqData = await request.json();
-    const categoryId = params.categoryId;
+    const { id } = params;
 
     // validation on the data from request
     const validation = updateCategorySchema.safeParse(reqData);
@@ -35,7 +35,7 @@ export async function PUT(request: NextRequest, { params }: props) {
 
     const updatedCategory = await prisma.category.update({
       where: {
-        id: parseInt(categoryId),
+        id: parseInt(id),
       },
       data: reqData,
     });
@@ -46,8 +46,8 @@ export async function PUT(request: NextRequest, { params }: props) {
     );
   } catch (error) {
     return NextResponse.json(
-      //   { message: "internal server error" },
-      { message: error },
+      { message: "internal server error", error },
+      // { message: error },
       { status: 500 }
     );
   }
@@ -60,12 +60,12 @@ export async function PUT(request: NextRequest, { params }: props) {
  * @access private  // authenticated user use endpoint
  */
 
-export async function DELETE(request: NextRequest, { params }: props) {
+export async function DELETE(req :NextRequest , { params }) {
   try {
-    const categoryId = params.categoryId;
+    const { id } = params;
 
-    const deleteCategory = await prisma.category.delete({
-      where: { id: parseInt(categoryId) },
+    await prisma.category.delete({
+      where: { id: parseInt(id) },
     });
 
     return NextResponse.json(
@@ -74,7 +74,7 @@ export async function DELETE(request: NextRequest, { params }: props) {
     );
   } catch (error) {
     return NextResponse.json(
-      { message: "internal server error" },
+      { message: "internal server error", error },
       { status: 500 }
     );
   }

@@ -11,16 +11,16 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
   try {
     const reqData = await request.json();
-    const categoryId = parseInt(reqData.categoryId) ;
+    const categoryId = parseInt(reqData.categoryId);
 
     const articles = await prisma.category.findUnique({
-        where: {
-          id: categoryId,
-        },
-        include: {
-          articles: true, // All articles where categoryId
-        },
-      });
+      where: {
+        id: categoryId,
+      },
+      include: {
+        articles: true, // All articles where categoryId
+      },
+    });
 
     return NextResponse.json(
       { message: "request success", data: articles },
@@ -28,8 +28,7 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     return NextResponse.json(
-      //   { message: "internal server error" },
-      { message: error },
+      { message: "internal server error", error },
       { status: 500 }
     );
   }

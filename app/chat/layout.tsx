@@ -1,10 +1,6 @@
 import React from "react";
-interface ReactChildren {
-  props: {
-    children: React.ReactNode;
-  };
-}
-const Layout = ({ children }: ReactChildren) => {
+
+const Layout = ({ children }) => {
   return (
     <div className="">
       {children}

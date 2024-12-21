@@ -24,18 +24,20 @@ export async function PUT(request: NextRequest) {
       );
     }
     // update user
-      const updateUser = await prisma.user.update({
-        where: {
-          id:parseInt( requestData.id),
-        },
-        data: requestData,
-      })
-      return  NextResponse.json({message:"updated successfully"} ,{status:200});
-
+    await prisma.user.update({
+      where: {
+        id: parseInt(requestData.id),
+      },
+      data: requestData,
+    });
+    return NextResponse.json(
+      { message: "updated successfully" },
+      { status: 200 }
+    );
   } catch (error) {
     return NextResponse.json(
-      { message: "internal server error " },
-    //   { message: error },
+      { message: "internal server error ", error },
+      //   { message: error },
       { status: 500 }
     );
   }

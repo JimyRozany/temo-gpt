@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 /**
  * @method GET
@@ -7,13 +7,18 @@ import { NextRequest, NextResponse } from "next/server";
  * @desc logout user
  * @access public // any user can logout
  */
-export function GET(request: NextRequest) {
+
+
+export async function GET() {
   try {
-    cookies().delete("auth-token");
+    
+    const cookie = await cookies();
+    cookie.delete("auth-token");
+
     return NextResponse.json({ message: "logout" }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { message: "internal server error " },
+      { message: "internal server error ", error },
       { status: 500 }
     );
   }

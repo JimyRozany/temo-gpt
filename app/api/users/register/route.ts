@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
 import prisma from "@/utils/db";
 import bcrypt from "bcryptjs";
 import { registerSchema } from "@/utils/validationSchemas";
@@ -41,7 +40,7 @@ export async function POST(request: NextRequest) {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(requestData.password, salt);
     if (requestData.role !== "" || requestData.role === null) {
-      const newUser = await prisma.user.create({
+      await prisma.user.create({
         data: {
           username: requestData.username,
           email: requestData.email,
@@ -56,7 +55,7 @@ export async function POST(request: NextRequest) {
       );
     }
     // create new user in database
-    const newUser = await prisma.user.create({
+    await prisma.user.create({
       data: {
         username: requestData.username,
         email: requestData.email,
@@ -70,7 +69,7 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     return NextResponse.json(
-      { message: "internal server error " },
+      { message: "internal server error ", error },
       { status: 500 }
     );
   }

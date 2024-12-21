@@ -1,17 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-// import { z } from "zod";
+
 import prisma from "@/utils/db";
 import bcrypt from "bcryptjs";
 import { loginSchema } from "@/utils/validationSchemas";
-// import jwt from "jsonwebtoken";
-// import { serialize } from "cookie";
+
 import { setCookie } from "@/utils/generateToken";
 
 interface JwtPayload {
   id: number;
   username: string;
   email: string;
-  role:string;
+  role: string;
 }
 
 /**
@@ -56,12 +55,12 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
-    
-    const jwtPayload : JwtPayload= {
+
+    const jwtPayload: JwtPayload = {
       id: user.id,
-      username:user.username,
+      username: user.username,
       email: user.email,
-      role: user.role ,
+      role: user.role,
     };
     //generate token and set-cookie
     const cookie = setCookie(jwtPayload);
@@ -77,7 +76,7 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     return NextResponse.json(
-      { message: "internal server error " },
+      { message: "internal server error ", error },
       { status: 500 }
     );
   }
