@@ -1,9 +1,13 @@
 import Message from "@/components/message/Message";
+import { VscMic } from "react-icons/vsc";
+import { HiMiniArrowUpCircle } from "react-icons/hi2";
+import { GiPaperClip } from "react-icons/gi";
 
 const ChatPage = () => {
   return (
-    <div className=" flex justify-center border border-green-500 p-0">
-      <div className=" relative w-4/5  container border border-red-500 p-0 md:p-4 md:w-3/5 flex flex-col items-center h-[calc(100vh_-_280px)]  md:h-[calc(100vh_-_130px)] overflow-y-scroll">
+    <div className=" flex justify-center  p-0  h-[calc(100vh_-_130px)] overflow-scroll">
+      {/* <div className=" relative w-4/5  container p-0 md:p-4 md:w-3/5 flex flex-col items-center h-[calc(100vh_-_280px)]  md:h-[calc(100vh_-_130px)] overflow-y-scroll"> */}
+      <div className=" relative w-4/5  container p-0 md:p-4 md:w-3/5 flex flex-col items-center h-full">
         {/* user questions & temo answers */}
 
         <Message />
@@ -16,56 +20,24 @@ const ChatPage = () => {
         <Message />
         <Message />
         {/* input */}
-        <div className=" bottom-36 md:bottom-16 w-11/12 md:w-1/2 fixed ">
+        <div className=" bottom-36 md:bottom-16 w-11/12 md:w-[35rem] fixed ">
           <form action="#">
             <label className="input input-bordered flex items-center gap-2 rounded-full">
               <button className="">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-4 md:size-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13"
-                  />
-                </svg>
+                <GiPaperClip className="size-6 md:size-6 text-secondary hover:text-primary duration-300" />
               </button>
               {/* <input type="text" className="grow border border-green-200 w-4/5 resize-y overflow-auto " placeholder="Search"  /> */}
-              <textarea name="" id="" className=" w-4/5 md:min-h-10 outline-none border-none resize-y overflow-visible max-h-min bg-transparent"></textarea>
+              {/* <textarea
+                name=""
+                id=""
+                className=" w-4/5 md:min-h-10 outline-none border-none resize-y overflow-visible max-h-min bg-transparent"
+              ></textarea> */}
+              <input type="text" className="w-full  border overflow-x-none text-xl" />
               <button className="">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-4 md:size-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z"
-                  />
-                </svg>
+                <VscMic className="size-6 md:size-6 text-secondary hover:text-primary duration-300" />
               </button>
               <button className="">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="size-7 md:size-10 text-primary"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm.53 5.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 1 0 1.06 1.06l1.72-1.72v5.69a.75.75 0 0 0 1.5 0v-5.69l1.72 1.72a.75.75 0 1 0 1.06-1.06l-3-3Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                <HiMiniArrowUpCircle className="size-6 md:size-9 hover:text-secondary text-primary duration-300" />
               </button>
             </label>
           </form>

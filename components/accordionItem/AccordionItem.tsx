@@ -1,17 +1,26 @@
 
-
-const AccordionItem = ({ index, item }) => {
+type props ={
+  article:{
+    title:string,
+    body:string ,
+  }
+}
+const AccordionItem = ({  article }:props) => {
   return (
-    <div key={index} className="collapse collapse-plus bg-white">
+    <div className="collapse collapse-plus bg-white">
       <input type="radio" name="my-accordion-3" />
       <div
         dir="rtl"
         className={`collapse-title text-xl font-medium text-primary`}
       >
-        {item.question}
+        {article.title}
       </div>
       <div className="collapse-content">
-        <p className="text-gray-400">{item.answer}</p>
+        {/* <p className="text-gray-400">{article.body}</p> */}
+        <div
+            className="text-gray-400"
+            dangerouslySetInnerHTML={{ __html: article.body }}
+          />
       </div>
     </div>
   );

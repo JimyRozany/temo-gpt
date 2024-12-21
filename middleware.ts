@@ -17,6 +17,10 @@ export async function middleware(request: NextRequest) {
   if (payload.role !== "ADMIN" &&  pathname.startsWith('/dashboard')) {
     return NextResponse.redirect(new URL("/", request.url));
   }
+  // if user is CHATTING not access the home page go to chat page
+  if (payload.role === "CHATTING" &&  pathname === '/') {
+    return NextResponse.redirect(new URL("/chat", request.url));
+  }
 
   return NextResponse.next();
 }

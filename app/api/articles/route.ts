@@ -53,8 +53,8 @@ export async function POST(request: NextRequest) {
       data: {
         title: reqData.title,
         body: reqData.body,
-        userId: reqData.userId,
-        categoryId: reqData.categoryId,
+        userId: parseInt(reqData.userId) ,
+        categoryId: parseInt(reqData.categoryId),
       },
     });
 
@@ -65,6 +65,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     return NextResponse.json(
       { message: "internal server error" },
+      // { message:error },
       { status: 500 }
     );
   }

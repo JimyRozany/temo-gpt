@@ -1,10 +1,11 @@
 // Use the client directive for using usePathname hook.
 "use client";
-import React from "react";
+// import React, { useEffect, useState } from "react";
 // Use usePathname for catching route name.
 import { usePathname } from "next/navigation";
-import Navbar from "@/components/navbar/Navbar";
+// import Navbar from "@/components/navbar/Navbar";
 import NavTwo from "@/components/nav2/NavTwo";
+// import Cookies from "js-cookie";
 
 export const LayoutProvider = ({
   children,
@@ -13,7 +14,7 @@ export const LayoutProvider = ({
 }>) => {
   const pathname = usePathname();
 
-  if (pathname === "/login" || pathname.startsWith('/dashboard')) {
+  if (pathname === "/login" || pathname.startsWith("/dashboard")) {
     return <>{children}</>;
   }
 
