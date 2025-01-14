@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialActions"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+  // url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  username  String    @unique // max length is 100 chart
+  password  String //if you need column is optional write ? after datatype 
+  // isAdmin   Boolean  @default(false)
+  role      String      @default("READER")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  articles  Article[]
+
+  Score Score[]
+}
+
+// enum Role {
+//   ADMIN
+//   READER
+//   CHATTING
+// }
+
+model Article {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  title      String
+  body       String   
+  //one-to-many relation between article and user
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
+  //one-to-many relation between article and category
+  categories Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String
+  articles Article[]
+}
+
+model Score {
+  id          Int      @id @default(autoincrement())
+  html        Boolean?
+  php         Boolean?
+  programming Boolean?
+  user        User     @relation(fields: [userId], references: [id])
+  userId      Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
