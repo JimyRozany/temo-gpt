@@ -20,7 +20,7 @@ export const updateUserSchema = z.object({
 export const createArticleSchema = z.object({
   title: z.string().min(3).max(50),
   body: z.string().max(1000),
-  userId: z.string(),
+  // userId: z.string(),
   categoryId: z.string(),
 });
 export const updateArticleSchema = z.object({

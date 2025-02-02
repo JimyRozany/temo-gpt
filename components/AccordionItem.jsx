@@ -4,14 +4,14 @@ const AccordionItem = ({ article }) => {
       <input type="radio" name="my-accordion-3" />
       <div
         dir="rtl"
-        className={`collapse-title text-xl font-medium text-primary`}
+        className={`collapse-title text-md md:text-xl font-medium text-primary`}
       >
         {article.title}
       </div>
       <div className="collapse-content" dir="auto">
         {/* <p className="text-gray-400">{article.body}</p> */}
         <div
-          className="text-[#170f49]"
+          className="text-[#170f49] text-sm md:text-xl"
           dangerouslySetInnerHTML={{
             __html: article.body,
           }}

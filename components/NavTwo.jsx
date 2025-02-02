@@ -43,7 +43,7 @@ const NavTwo = () => {
             {authUser.role === "READER" || authUser.role === "ADMIN" ? (
               <li
                 dir="rtl"
-                className={`text-md flex items-center gap-2  hover:text-primary duration-300 ${
+                className={`text-md flex items-center gap-2  hover:text-primary duration-300 text-sm  ${
                   pathname === "/" ? "text-primary" : "text-secondary"
                 }`}
               >
@@ -55,7 +55,7 @@ const NavTwo = () => {
             {authUser.role === "CHATTING" || authUser.role === "ADMIN" ? (
               <li dir="rtl">
                 <div
-                  className={`text-md flex items-center gap-2 text-secondary hover:text-primary duration-300 ${
+                  className={`text-md flex items-center gap-2 text-secondary hover:text-primary duration-300 text-sm  ${
                     pathname === "/chat" ? "text-primary" : "text-secondary"
                   }`}
                 >
@@ -66,7 +66,7 @@ const NavTwo = () => {
             ) : null}
             <li
               dir="rtl"
-              className={`text-md flex items-center gap-2   hover:text-primary duration-300 ${
+              className={`text-md flex items-center gap-2   hover:text-primary duration-300 text-sm ${
                 pathname === "/quiz" ? "text-primary" : "text-secondary"
               }`}
             >
@@ -76,12 +76,14 @@ const NavTwo = () => {
           </ul>
         </div>
         {/* logo */}
-        <div className="flex items-center gap-2">
-          <PiCrownSimpleFill className="text-6xl text-primary " />
-          <span className="text-xl md:text-2xl text-secondary font-bold">
-            TemoGPT
-          </span>
-        </div>
+        <Link href="/">
+          <div className="flex items-center gap-2">
+            <PiCrownSimpleFill className="text-3xl md:text-4xl lg:text-6xl text-primary " />
+            <span className="text-xl md:text-2xl text-secondary font-bold">
+              TemoGPT
+            </span>
+          </div>
+        </Link>
       </div>
       {/* nav links when large and medium screens */}
       <div className="navbar-center hidden lg:flex ">

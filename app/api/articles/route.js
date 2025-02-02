@@ -34,9 +34,12 @@ export async function GET() {
  */
 
 export async function POST(request) {
+  const reqData = await request.json();
+  // return Response.json(
+  //   { message: "article created successfully", reqData },
+  //   { status: 201 }
+  // );
   try {
-    const reqData = await request.json();
-
     // validation on the data from request
     const validation = createArticleSchema.safeParse(reqData);
 
@@ -54,7 +57,7 @@ export async function POST(request) {
       data: {
         title: reqData.title,
         body: reqData.body,
-        userId: parseInt(reqData.userId),
+        userId: reqData.userId,
         categoryId: parseInt(reqData.categoryId),
       },
     });
@@ -65,7 +68,7 @@ export async function POST(request) {
     );
   } catch (error) {
     return Response.json(
-      { message: "internal server error", error },
+      { message: "internal server error", error, reqData },
       // { message:error },
       { status: 500 }
     );

@@ -21,12 +21,16 @@ const Message = ({ message, role, time, user }) => {
     >
       {/* user image  */}
       <div className="rounded-full object-cover overflow-hidden w-10 h-10  md:w-16 md:h-16 ">
-        <Image src={role === "user" ? avatarUser : avatarAi} alt="user photo" />
+        <Image
+          src={role === "user" ? avatarUser : avatarAi}
+          alt="user photo"
+          className="w-full h-full "
+        />
       </div>
       {/* user name & time & question */}
       <div className=" w-11/12">
         <div className="flex items-center gap-2 md:mt-5">
-          <h1 className="text-secondary text-md md:text-xl font-medium ">
+          <h1 className="text-secondary  text-sm md:text-xl font-medium ">
             {role === "user" ? user.username : "TemoGPT"}
           </h1>
           <p dir="ltr" className="text-mainGray text-sm md:text-md">

@@ -25,11 +25,12 @@ export default function EditArticle() {
 
   useEffect(() => {
     setLoading(true);
+
     // get article by id
     axios
       .get(`${apiURL}/articles/${articleId}`)
       .then((res) => {
-        // console.log(res.data.data);
+        console.log(res.data.article);
         setArticle(res.data.article);
         setEditorData(res.data.article.body);
         setLoading(false);
@@ -65,8 +66,6 @@ export default function EditArticle() {
       setLoading(true);
       await axios.put(`${apiURL}/articles/${articleId}`, lastArticle);
       toast.success("تم الحفظ بنجاح");
-      setArticle({ title: "", body: "", userId: "1", categoryId: "" });
-      setEditorData("");
       setLoading(false);
       router.replace("/dashboard/content");
     } catch (error) {

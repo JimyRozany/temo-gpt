@@ -35,9 +35,9 @@ export async function GET(req, { params }) {
  * @access private  // authenticated user use endpoint
  */
 export async function PUT(req, { params }) {
+  const { id } = await params;
+  const { title, body, categoryId, userId } = await req.json();
   try {
-    const { id } = params;
-    const { title, body, categoryId } = await req.json();
     // await updateArticleSchema.validate({ title, body, userId ,categoryId });
     await prisma.article.update({
       where: { id: parseInt(id) },
@@ -45,7 +45,7 @@ export async function PUT(req, { params }) {
         title,
         body,
         updatedAt: new Date(),
-        userId: 1,
+        userId: userId,
         categoryId: parseInt(categoryId),
       },
     });

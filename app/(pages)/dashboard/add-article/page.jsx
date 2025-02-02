@@ -16,16 +16,26 @@ export default function AddArticle() {
   const [article, setArticle] = useState({
     title: "",
     body: "",
-    userId: "1",
+    userId: "",
     categoryId: "",
   });
 
   const [categories, setCategories] = useState([]);
+  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
 
   const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
+    // get user information
+    axios
+      .get(`${apiURL}/users/me`)
+      .then((res) => {
+        setUser(res.data.user);
+        setArticle({ ...article, userId: res.data.user.userId });
+        console.log(res.data.user);
+      })
+      .catch((error) => console.log(error));
     // get all categories
     axios
       .get(`${apiURL}/categories`)
@@ -37,7 +47,13 @@ export default function AddArticle() {
   }, []);
 
   const handleSubmit = async () => {
-    const lastArticle = { ...article, body: editorData };
+    const lastArticle = {
+      ...article,
+      body: editorData,
+      // userId: toString(user.userId),
+    };
+    console.log(lastArticle);
+
     // validation
     if (lastArticle.title === "")
       return toast.error("يجب ادخال العنوان (الموضوع)");
@@ -48,7 +64,7 @@ export default function AddArticle() {
       setLoading(true);
       await axios.post(`${apiURL}/articles`, lastArticle);
       toast.success("تم الاضافة بنجاح");
-      setArticle({ title: "", body: "", userId: "1", categoryId: "" });
+      setArticle({ title: "", body: "", userId: "", categoryId: "" });
       setEditorData("");
       setLoading(false);
       router.refresh();

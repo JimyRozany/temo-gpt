@@ -64,6 +64,9 @@
   textarea {
     @apply text-inherit bg-inherit border-none p-2;
   }
+  textarea {
+    border: 0px solid gray;
+  }
   input {
     border: 0px solid gray;
   }
@@ -75,7 +78,9 @@
     margin-bottom: 0.5rem;
     border: 0px solid gray;
   }
-
+  li {
+    border: 0px solid gray;
+  }
   button {
     @apply text-inherit font-tajawal bg-inherit border-neutral btn-neutral	 p-2 text-black cursor-pointer;
   }
@@ -121,4 +126,11 @@ body {
   margin: 0px;
   padding: 0px;
   overflow: hidden;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: auto;
 }
